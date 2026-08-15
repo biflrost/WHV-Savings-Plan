@@ -1,10 +1,13 @@
 {
   "expo": {
     "name": "澳洲攒钱计划",
-    "slug": "australia-savings",
+    "slug": "zane",
     "version": "1.0.0",
     "orientation": "portrait",
-    "platforms": ["ios", "android"],
+    "platforms": [
+      "ios",
+      "android"
+    ],
     "scheme": "australiasavings",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
@@ -17,6 +20,12 @@
       "adaptiveIcon": {
         "backgroundColor": "#1e3a8a"
       }
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "4886ba4a-69e6-4455-aaff-8f719167b2d5"
+      }
+    },
+    "owner": "zaneliu"
   }
 }
