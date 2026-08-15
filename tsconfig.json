@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "noUnusedLocals": false,
+    "lib": [
+      "ESNext",
+      "DOM"
+    ],
+    "types": [
+      "react"
+    ]
+  },
+  "include": [
+    "src",
+    "App.tsx"
+  ],
+  "exclude": [
+    "src/**/*.test.ts"
+  ],
+  "extends": "expo/tsconfig.base"
+}
