@@ -8,6 +8,7 @@
       "ios",
       "android"
     ],
+    "icon": "./assets/icon.png",
     "scheme": "australiasavings",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
@@ -18,6 +19,7 @@
     "android": {
       "package": "com.example.australiasavings",
       "adaptiveIcon": {
+        "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#1e3a8a"
       }
     },
