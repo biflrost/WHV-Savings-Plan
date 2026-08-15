@@ -98,4 +98,30 @@ australia-savings-app/
 ```
 
 ## 技术栈
-React Native + Expo SDK 51 · React Navigation · zustand · @react-native-async-storage · @supabase/supabase-js · TypeScript
+React Native + Expo SDK 54 · React Navigation · zustand · @react-native-async-storage · @supabase/supabase-js · TypeScript
+
+---
+
+## 已发布 / 出包位置
+
+- **本机项目目录（F 盘）**：`F:\澳洲攒钱计划`（已包含全部源码与配置，不含 `node_modules`，出包前需先 `npm install`）
+- **GitHub 公开仓库**：https://github.com/biflrost/WHV-Savings-Plan
+  ```bash
+  git clone https://github.com/biflrost/WHV-Savings-Plan.git
+  ```
+
+### 一键出安卓 APK（在 F 盘目录或克隆目录里执行）
+
+```bash
+cd F:\澳洲攒钱计划        # 或 cd WHV-Savings-Plan（clone 下来的）
+npm install              # F 盘副本不含依赖，需先安装
+npx eas login            # 用你的 Expo 账号登录（没有就去 expo.dev 免费注册）
+npm run build:android    # = npx eas build -p android --profile preview
+```
+
+- 构建在 **EAS 云端**完成（10~30 分钟），不需要 Mac。
+- 构建结束后终端会给出一个 **APK 下载链接**，手机浏览器打开下载、直接安装即可。
+- 出包前把 `app.json` 里的 `android.package` 改成你自己的（如 `com.yourname.australiasavings`），避免和他人冲突。
+- 苹果 IPA：`npm run build:ios`（需 $99/年 Apple 开发者账号，在 EAS 后台关联证书）。
+
+> 为什么我自己没法替你出 APK：EAS 云构建必须登录**你本人**的 Expo 账号并绑定付费/免费计划，涉及你的凭据，所以这一步只能由你在自己电脑上跑一条命令完成。代码、配置、仓库我都已备好。
