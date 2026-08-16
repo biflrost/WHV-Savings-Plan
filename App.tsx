@@ -24,15 +24,15 @@ export default function App() {
             tabBarActiveTintColor: colors.primary,
             tabBarInactiveTintColor: colors.sub,
             tabBarStyle: {
-              height: 90,
-              paddingBottom: 22,
+              height: 64,
+              paddingTop: 10,
+              paddingBottom: 10,
               backgroundColor: colors.card,
               borderTopColor: colors.border,
               borderTopWidth: 1,
               elevation: 8,
             },
-            tabBarItemStyle: { justifyContent: 'center' },
-            tabBarLabelStyle: { fontSize: 16, fontWeight: '700' },
+            tabBarLabelStyle: { fontSize: 15, fontWeight: '700' },
           }}
         >
           <Tab.Screen name="Dashboard" component={DashboardScreen} options={{ title: '📊 看板', headerTitle: '澳洲攒钱计划' }} />
