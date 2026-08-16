@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, Pressable, Alert, StyleSheet } from 'react-native';
-import { Screen, Card, LabeledInput, AddButton, ListRow, ResultBox, Stat } from '../components/ui';
+import { Screen, Card, LabeledInput, AddButton, JobItem, ResultBox, Stat } from '../components/ui';
 import { useStore, useComputed } from '../store';
 import { colors, currency, currencyAUD } from '../theme';
 import type { SalaryType } from '../types';
@@ -50,10 +50,13 @@ export default function JobsScreen() {
             const unit = j.type === 'week' ? '周' : '天';
             const gross = j.amount * j.duration;
             return (
-              <ListRow
+              <JobItem
                 key={j.id}
-                left={<Text style={styles.bold}>{j.name}</Text>}
-                right={`$${j.amount.toFixed(2)}/${unit} × ${j.duration}${unit} ➔ 税前 $${gross.toFixed(2)}`}
+                name={j.name}
+                amount={j.amount}
+                duration={j.duration}
+                unit={unit}
+                gross={gross}
                 onDelete={() => delJob(j.id)}
               />
             );
@@ -89,5 +92,4 @@ const styles = StyleSheet.create({
   seg: { flexDirection: 'row', gap: 10, marginBottom: 12 },
   segBtn: { flex: 1, paddingVertical: 13, borderRadius: 12, alignItems: 'center' },
   empty: { color: colors.sub, paddingVertical: 10 },
-  bold: { fontWeight: '700' },
 });

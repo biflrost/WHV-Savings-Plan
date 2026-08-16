@@ -8,7 +8,7 @@ import {
   StyleSheet,
   useWindowDimensions,
 } from 'react-native';
-import { colors } from '../theme';
+import { colors, currency } from '../theme';
 
 export const Screen: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <ScrollView style={styles.screen} contentContainerStyle={styles.screenContent}>
@@ -122,6 +122,35 @@ export const Tile: React.FC<{
   <View style={[styles.tile, { borderTopColor: topColor }]}>
     <Text style={styles.tileLabel}>{label}</Text>
     <Text style={[styles.tileValue, { color }]}>{value}</Text>
+  </View>
+);
+
+export const JobItem: React.FC<{
+  name: string;
+  amount: number;
+  duration: number;
+  unit: string;
+  gross: number;
+  onDelete: () => void;
+}> = ({ name, amount, duration, unit, gross, onDelete }) => (
+  <View style={styles.jobItem}>
+    <View style={styles.jobHeader}>
+      <Text style={styles.jobName} numberOfLines={1} ellipsizeMode="tail">
+        {name}
+      </Text>
+      <Pressable
+        style={({ pressed }) => [styles.jobDelBtn, pressed && styles.btnPressed]}
+        onPress={onDelete}
+        android_ripple={{ color: 'rgba(255,255,255,0.2)' }}
+      >
+        <Text style={styles.jobDelBtnText}>删除</Text>
+      </Pressable>
+    </View>
+    <Text style={styles.jobDetail}>
+      {currency(amount)}/{unit} × {duration}
+      {unit}
+    </Text>
+    <Text style={styles.jobGross}>税前 {currency(gross)}</Text>
   </View>
 );
 
@@ -247,6 +276,36 @@ const styles = StyleSheet.create({
   },
   itemLeft: { flex: 1, flexWrap: 'wrap', paddingRight: 8 },
   itemRight: { fontSize: 14, color: colors.sub, marginTop: 2 },
+
+  jobItem: {
+    backgroundColor: '#f9fafb',
+    borderRadius: 12,
+    padding: 14,
+    marginBottom: 12,
+    borderLeftWidth: 4,
+    borderLeftColor: colors.primary,
+  },
+  jobHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  jobName: {
+    flex: 1,
+    fontSize: 15,
+    fontWeight: '700',
+    color: colors.textStrong,
+    marginRight: 10,
+  },
+  jobDetail: { fontSize: 14, color: colors.sub, marginTop: 6 },
+  jobGross: { fontSize: 14, fontWeight: '600', color: colors.text, marginTop: 2 },
+  jobDelBtn: {
+    backgroundColor: colors.red,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 8,
+  },
+  jobDelBtnText: { color: '#fff', fontSize: 13, fontWeight: '700' },
 
   resultBox: {
     backgroundColor: colors.navyBg,
