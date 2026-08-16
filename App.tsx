@@ -24,14 +24,13 @@ export default function App() {
             tabBarActiveTintColor: colors.primary,
             tabBarInactiveTintColor: colors.sub,
             tabBarStyle: {
-              height: 64,
-              paddingTop: 10,
-              paddingBottom: 10,
+              height: 72,
               backgroundColor: colors.card,
               borderTopColor: colors.border,
               borderTopWidth: 1,
               elevation: 8,
             },
+            tabBarItemStyle: { justifyContent: 'center' },
             tabBarLabelStyle: { fontSize: 15, fontWeight: '700' },
           }}
         >
