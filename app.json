@@ -20,7 +20,7 @@
       "package": "com.example.australiasavings",
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
-        "backgroundColor": "#1e3a8a"
+        "backgroundColor": "#d0e3ec"
       }
     },
     "extra": {
