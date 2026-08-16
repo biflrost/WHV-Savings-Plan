@@ -9,6 +9,7 @@ import ExpensesScreen from './src/screens/ExpensesScreen';
 import BigItemsScreen from './src/screens/BigItemsScreen';
 import SettingsScreen from './src/screens/SettingsScreen';
 import { colors } from './src/theme';
+import CustomTabBar from './src/components/CustomTabBar';
 
 const Tab = createBottomTabNavigator();
 
@@ -17,21 +18,11 @@ export default function App() {
     <SafeAreaProvider>
       <NavigationContainer>
         <Tab.Navigator
+          tabBar={(props) => <CustomTabBar {...props} />}
           screenOptions={{
             headerStyle: { backgroundColor: colors.primary },
             headerTintColor: '#fff',
             headerTitleStyle: { fontWeight: '800', fontSize: 18 },
-            tabBarActiveTintColor: colors.primary,
-            tabBarInactiveTintColor: colors.sub,
-            tabBarStyle: {
-              height: 72,
-              backgroundColor: colors.card,
-              borderTopColor: colors.border,
-              borderTopWidth: 1,
-              elevation: 8,
-            },
-            tabBarItemStyle: { justifyContent: 'center' },
-            tabBarLabelStyle: { fontSize: 15, fontWeight: '700' },
           }}
         >
           <Tab.Screen name="Dashboard" component={DashboardScreen} options={{ title: '📊 看板', headerTitle: '澳洲攒钱计划' }} />
