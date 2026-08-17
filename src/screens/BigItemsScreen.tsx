@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, Alert, StyleSheet, useWindowDimensions } from 'react-native';
-import { Screen, Card, LabeledInput, AddButton, ListRow, ResultBox, Stat } from '../components/ui';
+import { Screen, Card, LabeledInput, AddButton, CardItem, ResultBox, Stat } from '../components/ui';
 import { useStore, useComputed } from '../store';
 import { colors, currency } from '../theme';
 
@@ -45,10 +45,10 @@ export default function BigItemsScreen() {
           bigItems.map((b) => {
             const dayCost = b.price / (b.days > 0 ? b.days : 1);
             return (
-              <ListRow
+              <CardItem
                 key={b.id}
-                left={<Text style={styles.bold}>{b.name}</Text>}
-                right={`总价 $${b.price.toFixed(2)} / ${b.days}天 ➔ 日摊 ${currency(dayCost)}`}
+                title={b.name}
+                lines={[`总价 ${currency(b.price)} / ${b.days}天`, `日摊 ${currency(dayCost)}`]}
                 onDelete={() => delBigItem(b.id)}
               />
             );
@@ -66,5 +66,4 @@ const styles = StyleSheet.create({
   row: { flexDirection: 'row', gap: 10, flexWrap: 'wrap' },
   rowCol: { flexDirection: 'column' },
   empty: { color: colors.sub, paddingVertical: 10 },
-  bold: { fontWeight: '700' },
 });

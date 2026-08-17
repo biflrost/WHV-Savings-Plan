@@ -125,34 +125,38 @@ export const Tile: React.FC<{
   </View>
 );
 
-export const JobItem: React.FC<{
-  name: string;
-  amount: number;
-  duration: number;
-  unit: string;
-  gross: number;
-  onDelete: () => void;
-}> = ({ name, amount, duration, unit, gross, onDelete }) => (
-  <View style={styles.jobItem}>
-    <View style={styles.jobHeader}>
-      <Text style={styles.jobName} numberOfLines={1} ellipsizeMode="tail">
-        {name}
-      </Text>
-      <Pressable
-        style={({ pressed }) => [styles.jobDelBtn, pressed && styles.btnPressed]}
-        onPress={onDelete}
-        android_ripple={{ color: 'rgba(255,255,255,0.2)' }}
-      >
-        <Text style={styles.jobDelBtnText}>删除</Text>
-      </Pressable>
+export const CardItem: React.FC<{
+  title: string;
+  subtitle?: string;
+  lines?: string[];
+  onDelete?: () => void;
+}> = ({ title, subtitle, lines = [], onDelete }) => (
+  <View style={styles.cardItem}>
+    <View style={styles.cardItemHeader}>
+      <View style={styles.cardItemTitleBox}>
+        <Text style={styles.cardItemTitle} numberOfLines={1} ellipsizeMode="tail">
+          {title}
+        </Text>
+        {subtitle ? <Text style={styles.cardItemSubtitle}>{subtitle}</Text> : null}
+      </View>
+      {onDelete ? (
+        <Pressable
+          style={({ pressed }) => [styles.cardItemDelBtn, pressed && styles.btnPressed]}
+          onPress={onDelete}
+          android_ripple={{ color: 'rgba(255,255,255,0.2)' }}
+        >
+          <Text style={styles.cardItemDelText}>删除</Text>
+        </Pressable>
+      ) : null}
     </View>
-    <Text style={styles.jobDetail}>
-      {currency(amount)}/{unit} × {duration}
-      {unit}
-    </Text>
-    <Text style={styles.jobGross}>税前 {currency(gross)}</Text>
+    {lines.map((line, idx) => (
+      <Text key={idx} style={styles.cardItemLine}>{line}</Text>
+    ))}
   </View>
 );
+
+// 兼容旧名：收入模块之前用的 JobItem
+export const JobItem = CardItem;
 
 export const Stat: React.FC<{
   label: string;
@@ -277,7 +281,7 @@ const styles = StyleSheet.create({
   itemLeft: { flex: 1, flexWrap: 'wrap', paddingRight: 8 },
   itemRight: { fontSize: 14, color: colors.sub, marginTop: 2 },
 
-  jobItem: {
+  cardItem: {
     backgroundColor: '#f9fafb',
     borderRadius: 12,
     padding: 14,
@@ -285,27 +289,27 @@ const styles = StyleSheet.create({
     borderLeftWidth: 4,
     borderLeftColor: colors.primary,
   },
-  jobHeader: {
+  cardItemHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: 'flex-start',
   },
-  jobName: {
-    flex: 1,
+  cardItemTitleBox: { flex: 1, marginRight: 10 },
+  cardItemTitle: {
     fontSize: 15,
     fontWeight: '700',
     color: colors.textStrong,
-    marginRight: 10,
   },
-  jobDetail: { fontSize: 14, color: colors.sub, marginTop: 6 },
-  jobGross: { fontSize: 14, fontWeight: '600', color: colors.text, marginTop: 2 },
-  jobDelBtn: {
+  cardItemSubtitle: { fontSize: 13, color: colors.sub, marginTop: 2 },
+  cardItemLine: { fontSize: 14, color: colors.sub, marginTop: 6 },
+  cardItemDelBtn: {
     backgroundColor: colors.red,
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 8,
+    marginTop: 2,
   },
-  jobDelBtnText: { color: '#fff', fontSize: 13, fontWeight: '700' },
+  cardItemDelText: { color: '#fff', fontSize: 13, fontWeight: '700' },
 
   resultBox: {
     backgroundColor: colors.navyBg,

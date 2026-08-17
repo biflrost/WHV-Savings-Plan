@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, Pressable, Alert, StyleSheet } from 'react-native';
-import { Screen, Card, LabeledInput, AddButton, JobItem, ResultBox, Stat } from '../components/ui';
+import { Screen, Card, LabeledInput, AddButton, CardItem, ResultBox, Stat } from '../components/ui';
 import { useStore, useComputed } from '../store';
 import { colors, currency, currencyAUD } from '../theme';
 import type { SalaryType } from '../types';
@@ -50,13 +50,10 @@ export default function JobsScreen() {
             const unit = j.type === 'week' ? '周' : '天';
             const gross = j.amount * j.duration;
             return (
-              <JobItem
+              <CardItem
                 key={j.id}
-                name={j.name}
-                amount={j.amount}
-                duration={j.duration}
-                unit={unit}
-                gross={gross}
+                title={j.name}
+                lines={[`${currency(j.amount)}/${unit} × ${j.duration}${unit}`, `税前 ${currency(gross)}`]}
                 onDelete={() => delJob(j.id)}
               />
             );

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, TextInput, Alert, Share, StyleSheet, useWindowDimensions } from 'react-native';
-import { Screen, Card, LabeledInput, AddButton, DangerButton, ListRow, ResultBox } from '../components/ui';
+import { Screen, Card, LabeledInput, AddButton, DangerButton, CardItem, ResultBox } from '../components/ui';
 import { useStore, useComputed } from '../store';
 import { colors } from '../theme';
 import type { AppData } from '../types';
@@ -187,7 +187,7 @@ export default function SettingsScreen() {
           <Text style={styles.empty}>暂无任何年份</Text>
         ) : (
           years.map((y) => (
-            <ListRow key={y.id} left={<Text style={{ fontWeight: '700' }}>{y.label}</Text>} onDelete={() => delYear(y.id)} />
+            <CardItem key={y.id} title={y.label} onDelete={() => delYear(y.id)} />
           ))
         )}
       </Card>

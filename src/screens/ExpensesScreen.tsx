@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, Alert, StyleSheet, useWindowDimensions } from 'react-native';
-import { Screen, Card, LabeledInput, AddButton, ListRow, ResultBox, Stat } from '../components/ui';
+import { Screen, Card, LabeledInput, AddButton, CardItem, ResultBox, Stat } from '../components/ui';
 import { useStore, useComputed } from '../store';
 import { colors, currency } from '../theme';
 
@@ -40,10 +40,10 @@ export default function ExpensesScreen() {
           <Text style={styles.empty}>未添加生活开销</Text>
         ) : (
           expenses.map((e) => (
-            <ListRow
+            <CardItem
               key={e.id}
-              left={<Text style={styles.bold}>{e.name}</Text>}
-              right={`每周 $${e.amount.toFixed(2)}`}
+              title={e.name}
+              lines={[`每周 ${currency(e.amount)}`]}
               onDelete={() => delExpense(e.id)}
             />
           ))
@@ -61,5 +61,4 @@ const styles = StyleSheet.create({
   row: { flexDirection: 'row', alignItems: 'flex-end', gap: 10, flexWrap: 'wrap' },
   rowCol: { flexDirection: 'column', alignItems: 'stretch' },
   empty: { color: colors.sub, paddingVertical: 10 },
-  bold: { fontWeight: '700' },
 });
