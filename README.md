@@ -118,3 +118,12 @@ australia-savings-app/
 ## 技术栈
 
 React Native + Expo SDK 54 · React Navigation · zustand · @react-native-async-storage · @supabase/supabase-js · TypeScript
+
+## 如何安装（安卓 APK）
+
+1. 打开本仓库的 **Releases** 页面，下载最新的 `澳洲攒钱计划-v1.0.0.apk`（或带版本号的 APK 文件）。
+2. 把 APK 传到安卓手机（微信、数据线、网盘均可），点击该文件。
+3. 若手机提示“禁止安装未知来源应用”，按提示**允许**本次安装（设置 → 安全 → 安装未知应用 → 允许当前来源）。
+4. 点击“安装”，完成后桌面会出现“澳洲攒钱计划”，打开即可使用。
+
+> 这是用 EAS 直接打好的安卓安装包，无需经过任何应用商店。
